@@ -1,19 +1,25 @@
 # Tyler Sabin
 # CNE 335 Winter Quarter 2024
-# 3/7/2024
+# 3/15/2024
 # source forked from https://github.com/krhodesrtc/CNE335_automation_project.git
 # source used from Tyler Sabin's fork https://github.com/tsabin2023/CNE335_automation_project.git
 # instructions to complete code https://rtc.instructure.com/courses/2439011/assignments/31799071?module_item_id=79647034
 # source of further instructions Kim Rhodes
-# # source Brian Huang
+# source Brian Huang
+# source Kim Rhodes
 
 import os
+import paramiko
+
 class Server:
     """ Server class for representing and manipulating servers. """
 
-    def __init__(self, server_ip):
+    def __init__(self, server_ip, key_file):
         # TODO -
         self.server_ip = server_ip
+        self.ssh = paramiko.SSHClient()
+        self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+        self.key = paramiko.RSAKey.from_private_key_file(key_file)
 
     def ping(self):
         # TODO - Use os module to ping the server
@@ -22,3 +28,13 @@ class Server:
             return True
         else:
             return False
+
+    def run_a_command(self, command):
+        self.ssh.connect(hostname=self.server_ip, username="ubuntu", pkey=self.key)
+        stdin, stdout, stderr = self.ssh.exec_command(command)
+        line = stdout.readline()
+        while line:
+            print(line)
+            line = stdout.readline()
+        print(stderr.read().decode())
+
