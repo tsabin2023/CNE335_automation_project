@@ -15,6 +15,7 @@
 from Server import Server
 
 def print_program_info():
+    # function does a print statement
     # TODO - Change your name
     print("Server Automator v0.1 by Tyler Sabin")
 

@@ -24,6 +24,7 @@ class Server:
 
     def ping(self):
         # TODO - Use os module to ping the server
+        # pings 5 times and checks truthiness of check_response
         check_response = os.system(f"ping -n 5 {self.server_ip}")
         if check_response == 0:
             return True
@@ -35,9 +36,11 @@ class Server:
         self.ssh.connect(hostname=self.server_ip, username="ubuntu", pkey=self.key)
         stdin, stdout, stderr = self.ssh.exec_command(command)
         line = stdout.readline()
+        # reads lines in real time
         while line:
             print(line)
             line = stdout.readline()
+        # after while loop finishes std errors are read and decoded
         print(stderr.read().decode())
         # closing connection
         self.ssh.close()
