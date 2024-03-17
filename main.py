@@ -28,6 +28,6 @@ if __name__ == '__main__':
     # TODO - Call Ping method and print the results
     if my_aws_ec2_server.ping():
         print("code successful")
-        # runs a command on AWS EC2 instance
-        my_aws_ec2_server.run_a_command("sudo apt -y update && sudo apt -y upgrade")
+        # runs a command on AWS EC2 instance to update and upgrade and install chromium
+        my_aws_ec2_server.run_a_command("sudo apt -y update && sudo apt -y upgrade && sudo apt install -y chromium-browser")
         print("command successful")
