@@ -1,6 +1,6 @@
 # Tyler Sabin
 # CNE 335 Winter Quarter 2024
-# 3/15/2024
+# 3/16/2024
 # source forked from https://github.com/krhodesrtc/CNE335_automation_project.git
 # source used from Tyler Sabin's fork https://github.com/tsabin2023/CNE335_automation_project.git
 # instructions to complete code https://rtc.instructure.com/courses/2439011/assignments/31799071?module_item_id=79647034
@@ -16,6 +16,7 @@ class Server:
 
     def __init__(self, server_ip, key_file):
         # TODO -
+        # setting up some of our paramiko remote code in the constructor
         self.server_ip = server_ip
         self.ssh = paramiko.SSHClient()
         self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
@@ -30,6 +31,7 @@ class Server:
             return False
 
     def run_a_command(self, command):
+        # creating connection and running command from main
         self.ssh.connect(hostname=self.server_ip, username="ubuntu", pkey=self.key)
         stdin, stdout, stderr = self.ssh.exec_command(command)
         line = stdout.readline()
@@ -37,4 +39,6 @@ class Server:
             print(line)
             line = stdout.readline()
         print(stderr.read().decode())
-
+        # closing connection
+        #self.ssh.close()
+        #print("ssh connection closed")
