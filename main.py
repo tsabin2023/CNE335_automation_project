@@ -28,6 +28,5 @@ if __name__ == '__main__':
     if my_aws_ec2_server.ping():
         print("code successful")
         # runs a command on AWS EC2 instance
-        my_aws_ec2_server.run_a_command("echo something")
-        # sudo apt -y update && sudo apt -y upgrade
+        my_aws_ec2_server.run_a_command("sudo apt -y update && sudo apt -y upgrade")
         print("command successful")

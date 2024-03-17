@@ -40,5 +40,5 @@ class Server:
             line = stdout.readline()
         print(stderr.read().decode())
         # closing connection
-        #self.ssh.close()
-        #print("ssh connection closed")
+        self.ssh.close()
+        print("ssh connection closed")
