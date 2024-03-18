@@ -27,12 +27,6 @@ bash
 
 cd CNE335_automation_project
 
-    [Add any additional installation steps if required]
-
-Usage
-
-To use the project, follow these steps:
-
     install python
     set interpreter to 3.11
     install paramiko package
@@ -41,6 +35,10 @@ To use the project, follow these steps:
     enter your remote server's ip address in the python files before running script
     provide a valid link for the key to your remote server in the python files before running program
     make sure your remote server instance is running and use its current instance ip address in python files
+
+Usage
+
+To use the project, follow these steps:
     run main.py
     use putty to verify installation was successful
 
